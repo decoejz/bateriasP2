@@ -75,21 +75,24 @@ class Bateria_Escolhida():
         lista_serie = []
         lista_paralelo = []
         for item in dic:
-            quantP = paralelo(self.pot,self.tempo,dic[item])
             quantS = serie(self.ddp, dic[item], self.limite_mais, self.limite_menos)
-            quantT = quantP*quantS
-            preco = quantT*dic[item]["preco"]
+        
             if (not (quantS == -1)):
+                nova_tensao = quantS * dic[item]["ddp"]
+                quantP = paralelo(self.pot,self.tempo,dic[item],nova_tensao)
+                quantT = quantP*quantS
+                preco = quantT*dic[item]["preco"]
+
                 lista_modelo.append(dic[item]["nome"])
                 lista_preco_individual.append(dic[item]["preco"])
                 lista_preco.append(preco)
                 lista_quantidade.append(quantT)
-                lista_serie.append(quantP)
-                lista_paralelo.append(quantS)
+                lista_serie.append(quantS)
+                lista_paralelo.append(quantP)
         return lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo
 
-def paralelo(pot_usuario,tempo_usuario,item):
-    i = pot_usuario/item["ddp"]
+def paralelo(pot_usuario,tempo_usuario,item,tensao):
+    i = pot_usuario/tensao
     tempo = item["cap_carga"]/i # tempo que ficara ligada
     if tempo > tempo_usuario: # se o tempo obtido e maior que o esperado tudo OK
         quant = 1 # quantidade de pilhas
