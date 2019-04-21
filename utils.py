@@ -55,67 +55,58 @@ def calcula_tempo(mat1,mat2): # não parece necessário - ela apenas pede o temp
     return 1
 
 class Bateria_Escolhida():
-    def __init__(self, ddp_usuario, pot_usuario, tempo_usuario, cap_carga_usuario, limite):
+    def __init__(self, ddp_usuario, pot_usuario, tempo_usuario, cap_carga_usuario, limite_mais, limite_menos):
         self.ddp = ddp_usuario
         self.pot = pot_usuario
         self.tempo = tempo_usuario
         self.cap_carga = cap_carga_usuario
-        self.limite = limite
+        self.limite_mais = limite_mais
+        self.limite_menos = limite_menos
     
     def escolha(self,dic):
         quantP = 1
         quantS = 1
         quantT = 1
-        # for item in dic:
-        #     print(item["ddp"])
-        #     if item["ddp"] < 3:
-        #         if abs(item["ddp"] - self.ddp) < 1:
-        #             quantP = paralelo(self.pot,self.tempo,item)
-        #             quantS = serie(self.ddp, item)
-        #             quantT = quantP*quantS
-        #             return item, quantT, quantP, quantS #devolve a pilha, a quantidade total, a quantidade em paralelo e a quantidade em série
-        #     else:
-        #         if abs(item["ddp"] - self.ddp) <= 3:
-        #             quantP = paralelo(self.pot,self.tempo,item)
-        #             quantS = serie(self.ddp, item)
-        #             quantT = quantP*quantS
-        #             return item, quantT, quantP, quantS
-        #         if self.ddp > 15:
-        #             quantP = paralelo(self.pot,self.tempo,item)
-        #             quantS = serie(self.ddp, item)
-        #             quantT = quantP*quantS
-        #             return item, quantT, quantP, quantS
 
+        lista_preco = []
+        lista_preco_individual = []
+        lista_modelo = []
+        lista_quantidade = []
+        lista_serie = []
+        lista_paralelo = []
         for item in dic:
-            lista_preco = []
-            print(dic[item], "itemmmmmmmmmmmmmmmmmmmmmm")
             quantP = paralelo(self.pot,self.tempo,dic[item])
-            quantS = serie(self.ddp, dic[item])
+            quantS = serie(self.ddp, dic[item], self.limite_mais, self.limite_menos)
             quantT = quantP*quantS
             preco = quantT*dic[item]["preco"]
-            lista_preco.append(preco)
-            minimo = min(lista_preco)
-            index_min = lista_preco.index(minimo)
-            print(dic[str(index_min+1)])
-            print("------------------------------------------------")
-        return dic[str(index_min)], quantT, quantP, quantS
+            if (not (quantS == -1)):
+                lista_modelo.append(dic[item]["nome"])
+                lista_preco_individual.append(dic[item]["preco"])
+                lista_preco.append(preco)
+                lista_quantidade.append(quantT)
+                lista_serie.append(quantP)
+                lista_paralelo.append(quantS)
+        return lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo
 
 def paralelo(pot_usuario,tempo_usuario,item):
     i = pot_usuario/item["ddp"]
-    tempo = item["cap_carga"]/i # tempo que ficará ligada
-    if tempo > tempo_usuario: # se o tempo obtido é maior que o esperado tudo OK
+    tempo = item["cap_carga"]/i # tempo que ficara ligada
+    if tempo > tempo_usuario: # se o tempo obtido e maior que o esperado tudo OK
         quant = 1 # quantidade de pilhas
         return quant
-    else: # se o tempo obtido é menor que o esperado
-        quant = tempo_usuario/tempo #verifica quantas pilhas em paralelo serão necessárias
-        quant = int(quant)+1 # não devolve números quebrados e sempre arredonda para cima
+    else: # se o tempo obtido e menor que o esperado
+        quant = tempo_usuario/tempo #verifica quantas pilhas em paralelo serao necessarias
+        quant = int(quant)+1 # nao devolve números quebrados e sempre arredonda para cima
         return quant #devolve a quantidade de paralelos
 
-def serie(ddp_usuario,item):
-    if(item["ddp"] >= ddp_usuario):
+def serie(ddp_usuario,item, limite_mais, limite_menos):
+    #Verifica se a tensao esta dentro dos limites desejados pelo usuario
+    #Caso esteja, apenas uma pilha e necessario, caso nao esteja, e calculado
+    #quantas pilhas sao necessarias
+    if ((ddp_usuario+limite_mais >= item["ddp"]) and (ddp_usuario-limite_menos <= item["ddp"])):
         return 1
-    else:
+    elif (item["ddp"] < ddp_usuario-limite_menos):
         quant = int(ddp_usuario/item["ddp"])+1
         return quant
-
-
+    else:
+        return -1

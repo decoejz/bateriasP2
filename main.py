@@ -61,11 +61,13 @@ def etapa2(dic2):
         pot_usuario = int(input("Qual a potência da pilha que você precisa, em W/h? "))
         tempo_usuario = int(input("Quanto tempo a pilha precisa ficar ligada, em horas? "))
         cap_carga_usuario = int(input("Qual a capacidade de carga da pilha que você precisa, em Ah? "))
-        limite_usuario = int(input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar, em V? "))
+        limite_usuario_mais = int(input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? "))
+        limite_usuario_menos = int(input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? "))
         
-        bateria_usu = Bateria_Escolhida(ddp_usuario,pot_usuario,tempo_usuario,cap_carga_usuario, limite_usuario)
-        escolhida, total, em_paralelo, em_serie = bateria_usu.escolha(dic2)
-        return escolhida, total, em_paralelo, em_serie
+        bateria_usu = Bateria_Escolhida(ddp_usuario,pot_usuario,tempo_usuario,cap_carga_usuario, limite_usuario_mais,limite_usuario_menos)
+        # escolhida, total, em_paralelo, em_serie = bateria_usu.escolha(dic2)
+        # return escolhida, total, em_paralelo, em_serie
+        return (bateria_usu.escolha(dic2))
 
 
 def __init__():
@@ -80,22 +82,37 @@ def __init__():
             bateria = etapa1(dic1)
             print("--------------------------------------------------------------------------------------------")
             print("A DDP dessa bateria em V será:")
-            print(bateria.ddp)
+            print("{:.2f}".format(bateria.ddp))
             print("A Capacidade de carga dessa bateria, em mAh será:")
-            print(bateria.cap_carga)
+            print("{:.2f}".format(bateria.cap_carga))
             print("A Potência dessa bateria em W/h será:")
-            print(bateria.potencia)
+            print("{:.2f}".format(bateria.potencia))
             print("--------------------------------------------------------------------------------------------")
         if resposta == 0:
-            bateria, total, em_paralelo, em_serie = etapa2(dic2)
-            print(bateria)
-            print("--------------------------------------------------------------------------------------------")
-            print("Você pode usar a pilha", bateria["nome"])
-            print("serão",em_serie," pilhas em série repetidas ",em_paralelo," vezes em paralelo")
-            print("Completando um total de ",total," pilhas")
-            print("cada pilha custa ",bateria["preco"]," reais, então você gastará ",bateria["preco"]*total," reais no total")
-            print("--------------------------------------------------------------------------------------------")
-        
+            lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo = etapa2(dic2)
+
+            print("\n\n\n--------------------------------------------------------------------------------------------")
+            while (len(lista_preco) > 0):
+                minimo = min(lista_preco)
+                index_min = lista_preco.index(minimo)
+
+                print("Você pode usar a pilha {}".format(lista_modelo[index_min]))
+                print("Serão {0} pilhas em série, repetidas {1} em paralelo".format(lista_serie[index_min],lista_paralelo[index_min]))
+                print("Completando um total de {} pilhas".format(lista_quantidade[index_min]))
+                print("Cada pilha custa R${0:.2f}, totalizando R${1:.2f}".format(lista_preco_individual[index_min],lista_preco[index_min]))
+                print("--------------------------------------------------------------------------------------------")
+
+                del lista_modelo[index_min]
+                del lista_preco[index_min]
+                del lista_preco_individual[index_min]
+                del lista_quantidade[index_min]
+                del lista_serie[index_min]
+                del lista_paralelo[index_min]
+
+            print("\n")
+
+
+
         sair = int(input("Para sair digite 1, para voltar para o início digite 0: "))
 
 
