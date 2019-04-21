@@ -57,13 +57,54 @@ def etapa2(dic2):
         print("--------------------------------------------------------------------------------------------")
         print("ETAPA 2: SELEÇÃO DE PILHA COMERCIAL PARA PARÂMETROS DADOS")
         print("--------------------------------------------------------------------------------------------")
-        ddp_usuario = float(input("Qual a DDP da pilha que você precisa, em V? "))
-        pot_usuario = float(input("Qual a potência da pilha que você precisa, em W/h? "))
-        tempo_usuario = float(input("Quanto tempo a pilha precisa ficar ligada, em horas? "))
-        cap_carga_usuario = float(input("Qual a capacidade de carga da pilha que você precisa, em Ah? "))
-        limite_usuario_mais = float(input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? "))
-        limite_usuario_menos = float(input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? "))
+        ddp_usuario = input("Qual a DDP da pilha que você precisa, em V? ")
+        while (True):
+            try:
+                ddp_usuario = float(ddp_usuario)
+                break
+            except:
+                ddp_usuario = input("Qual a DDP da pilha que você precisa, em V? (Coloque um número) - ")
         
+        pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? ")
+        while (True):
+            try:
+                pot_usuario = float(pot_usuario)
+                break
+            except:
+                pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? (Coloque um número) - ")
+        
+        tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? ")
+        while (True):
+            try:
+                tempo_usuario = float(tempo_usuario)
+                break
+            except:
+                tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? (Coloque um número) - ")
+        
+        cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? ")
+        while (True):
+            try:
+                cap_carga_usuario = float(cap_carga_usuario)
+                break
+            except:
+                cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? (Coloque um número) - ")
+        
+        limite_usuario_mais = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? ")
+        while (True):
+            try:
+                limite_usuario_mais = float(limite_usuario_mais)
+                break
+            except:
+                limite_usuario_mais = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? (Coloque um número) - ")
+
+        limite_usuario_menos = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? ")
+        while (True):
+            try:
+                limite_usuario_menos = float(limite_usuario_menos)
+                break
+            except:
+                limite_usuario_menos = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? (Coloque um número) - ")
+
         bateria_usu = Bateria_Escolhida(ddp_usuario,pot_usuario,tempo_usuario,cap_carga_usuario, limite_usuario_mais,limite_usuario_menos)
         # escolhida, total, em_paralelo, em_serie = bateria_usu.escolha(dic2)
         # return escolhida, total, em_paralelo, em_serie
@@ -97,7 +138,7 @@ def __init__():
                 index_min = lista_preco.index(minimo)
 
                 print("Você pode usar a pilha {}".format(lista_modelo[index_min]))
-                print("Serão {0} pilhas em série, repetindo {1} em paralelo".format(lista_serie[index_min],lista_paralelo[index_min]))
+                print("Serão {0} pilhas em série, com {1} em paralelo em cada".format(lista_serie[index_min],lista_paralelo[index_min]))
                 print("Completando um total de {} pilhas".format(lista_quantidade[index_min]))
                 print("Cada pilha custa R${0:.2f}, totalizando R${1:.2f}".format(lista_preco_individual[index_min],lista_preco[index_min]))
                 print("--------------------------------------------------------------------------------------------")

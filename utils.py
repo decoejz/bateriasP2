@@ -92,7 +92,8 @@ class Bateria_Escolhida():
         return lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo
 
 def paralelo(pot_usuario,tempo_usuario,item,tensao):
-    i = pot_usuario/tensao
+    # i = pot_usuario/tensao
+    i = pot_usuario/item["ddp"]
     tempo = item["cap_carga"]/i # tempo que ficara ligada
     if tempo > tempo_usuario: # se o tempo obtido e maior que o esperado tudo OK
         quant = 1 # quantidade de pilhas
@@ -109,7 +110,17 @@ def serie(ddp_usuario,item, limite_mais, limite_menos):
     if ((ddp_usuario+limite_mais >= item["ddp"]) and (ddp_usuario-limite_menos <= item["ddp"])):
         return 1
     elif (item["ddp"] < ddp_usuario-limite_menos):
-        quant = int(ddp_usuario/item["ddp"])+1
-        return quant
+        quant = ddp_usuario/item["ddp"]
+        if (int(quant) < quant and quant < int(quant)+1):
+            quant = int(quant)+1
+        else:
+            quant = int(quant)
+        
+        #Verifica que a tensao calculada e valida para a aplicacao do usuario
+        if (quant*item["ddp"] > ddp_usuario+limite_mais):
+            return -1
+        return int(quant)
+    #Se a tensao ja for maior do que o necessario pelo usuario,
+    #essa opcao sera descartada
     else:
         return -1
