@@ -111,6 +111,7 @@ def serie(ddp_usuario,item, limite_mais, limite_menos):
         return 1
     elif (item["ddp"] < ddp_usuario-limite_menos):
         quant = ddp_usuario/item["ddp"]
+
         if (int(quant) < quant and quant < int(quant)+1):
             quant = int(quant)+1
         else:
@@ -121,6 +122,6 @@ def serie(ddp_usuario,item, limite_mais, limite_menos):
             return -1
         return int(quant)
     #Se a tensao ja for maior do que o necessario pelo usuario,
-    #essa opcao sera descartada
+    #essa opcao sera descartada 
     else:
         return -1

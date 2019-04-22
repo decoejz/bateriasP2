@@ -24,6 +24,7 @@ def menu_principal(dic): #Seleção de material para cátodo e anôdo
                 print("comando inválido escolha novamente")
                 comando = input("Constrir sua própria pilha(C) ou Selecionar pilha comercial(S): ")
 def etapa1(dic):
+    print("\n"*100)
     print("--------------------------------------------------------------------------------------------")
     print("ETAPA 1: SELEÇÃO DE MATERIAIS PARA A PILHA")
     print("--------------------------------------------------------------------------------------------")
@@ -34,81 +35,84 @@ def etapa1(dic):
     mat1_id = 100
     mat2_id = 100
     while mat1_id > 10 or mat1_id < 1:
-        print("Não esqueça que temos apenas 10 materiais disponíeis.")
+        print("\nMETAL 1:")
+        print("Não esqueça que temos apenas 10 materiais disponíveis.")
         print("O id deve ser um número entre 1 e 10")
         mat1_id = int(input("Qual o id do primeiro metal? "))
     massa_mat1 = int(input("Qual é a massa (em g) do primeiro metal? "))
     conc_sol_mat1 = int(input("Qual é a concentração da solução para primeiro metal em g/mol? "))
     while mat2_id > 10 or mat2_id < 1:
-        print("Não esqueça que temos apenas 10 materiais disponíeis.")
+        print("\nMETAL 2:")
+        print("Não esqueça que temos apenas 10 materiais disponíveis.")
         print("O id deve ser um número entre 1 e 10")
         mat2_id = int(input("Qual o id do metal do segundo metal? "))
     massa_mat2 = int(input("Qual é a massa (em g) do metal do segundo metal? "))
     conc_sol_mat2 = int(input("Qual é a concentração da solução para segundo metal em g/mol? "))
+    print("\nTEMPERATURA")
     temp = int(input("Qual é a temperatura em graus celcius? "))
+    print("\n"*20)
     mat1 = dic[str(mat1_id)]
     mat2 = dic[str(mat2_id)]
-    print(mat1)
-    print(mat2)
     bateria = pilha(mat1, mat2, massa_mat1, massa_mat2,conc_sol_mat1,conc_sol_mat2, temp)
     return bateria
 
 def etapa2(dic2):
-        print("--------------------------------------------------------------------------------------------")
-        print("ETAPA 2: SELEÇÃO DE PILHA COMERCIAL PARA PARÂMETROS DADOS")
-        print("--------------------------------------------------------------------------------------------")
-        ddp_usuario = input("Qual a DDP da pilha que você precisa, em V? ")
-        while (True):
-            try:
-                ddp_usuario = float(ddp_usuario)
-                break
-            except:
-                ddp_usuario = input("Qual a DDP da pilha que você precisa, em V? (Coloque um número) - ")
-        
-        pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? ")
-        while (True):
-            try:
-                pot_usuario = float(pot_usuario)
-                break
-            except:
-                pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? (Coloque um número) - ")
-        
-        tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? ")
-        while (True):
-            try:
-                tempo_usuario = float(tempo_usuario)
-                break
-            except:
-                tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? (Coloque um número) - ")
-        
-        cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? ")
-        while (True):
-            try:
-                cap_carga_usuario = float(cap_carga_usuario)
-                break
-            except:
-                cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? (Coloque um número) - ")
-        
-        limite_usuario_mais = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? ")
-        while (True):
-            try:
-                limite_usuario_mais = float(limite_usuario_mais)
-                break
-            except:
-                limite_usuario_mais = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? (Coloque um número) - ")
+    print("\n"*100)
+    print("--------------------------------------------------------------------------------------------")
+    print("ETAPA 2: SELEÇÃO DE PILHA COMERCIAL PARA PARÂMETROS DADOS")
+    print("--------------------------------------------------------------------------------------------")
+    ddp_usuario = input("Qual a DDP da pilha que você precisa, em V? ")
+    while (True):
+        try:
+            ddp_usuario = float(ddp_usuario)
+            break
+        except:
+            ddp_usuario = input("Qual a DDP da pilha que você precisa, em V? (Coloque um número) - ")
+    
+    pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? ")
+    while (True):
+        try:
+            pot_usuario = float(pot_usuario)
+            break
+        except:
+            pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? (Coloque um número) - ")
+    
+    tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? ")
+    while (True):
+        try:
+            tempo_usuario = float(tempo_usuario)
+            break
+        except:
+            tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? (Coloque um número) - ")
+    
+    cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? ")
+    while (True):
+        try:
+            cap_carga_usuario = float(cap_carga_usuario)
+            break
+        except:
+            cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? (Coloque um número) - ")
+    
+    limite_usuario_mais = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? ")
+    while (True):
+        try:
+            limite_usuario_mais = float(limite_usuario_mais)
+            break
+        except:
+            limite_usuario_mais = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? (Coloque um número) - ")
 
-        limite_usuario_menos = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? ")
-        while (True):
-            try:
-                limite_usuario_menos = float(limite_usuario_menos)
-                break
-            except:
-                limite_usuario_menos = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? (Coloque um número) - ")
+    limite_usuario_menos = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? ")
+    while (True):
+        try:
+            limite_usuario_menos = float(limite_usuario_menos)
+            break
+        except:
+            limite_usuario_menos = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? (Coloque um número) - ")
 
-        bateria_usu = Bateria_Escolhida(ddp_usuario,pot_usuario,tempo_usuario,cap_carga_usuario, limite_usuario_mais,limite_usuario_menos)
-        # escolhida, total, em_paralelo, em_serie = bateria_usu.escolha(dic2)
-        # return escolhida, total, em_paralelo, em_serie
-        return (bateria_usu.escolha(dic2))
+    bateria_usu = Bateria_Escolhida(ddp_usuario,pot_usuario,tempo_usuario,cap_carga_usuario, limite_usuario_mais,limite_usuario_menos)
+    # escolhida, total, em_paralelo, em_serie = bateria_usu.escolha(dic2)
+    # return escolhida, total, em_paralelo, em_serie
+    return (bateria_usu.escolha(dic2))
 
 
 def __init__():
@@ -131,8 +135,8 @@ def __init__():
             print("--------------------------------------------------------------------------------------------")
         if resposta == 0:
             lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo = etapa2(dic2)
-
-            print("\n\n\n--------------------------------------------------------------------------------------------")
+            print("\n"*100)
+            print("--------------------------------------------------------------------------------------------")
             while (len(lista_preco) > 0):
                 minimo = min(lista_preco)
                 index_min = lista_preco.index(minimo)
