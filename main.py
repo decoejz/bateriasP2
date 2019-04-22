@@ -126,15 +126,13 @@ def __init__():
         if resposta == 1:
             bateria = etapa1(dic1)
             print("--------------------------------------------------------------------------------------------")
-            print("A DDP dessa bateria em V será:")
-            print("{:.2f}".format(bateria.ddp))
-            print("A Capacidade de carga dessa bateria, em mAh será:")
-            print("{:.2f}".format(bateria.cap_carga))
-            print("A Potência dessa bateria em W/h será:")
-            print("{:.2f}".format(bateria.potencia))
+            print("A DDP dessa bateria em V será: {:.2f}".format(bateria.ddp))
+            print("A corrente máxima da bateria, em mA será: {:.2f}".format(2*bateria.cap_carga))
+            print("A Capacidade de carga dessa bateria, em mAh será: {:.2f}".format(bateria.cap_carga))
+            print("A Potência dessa bateria em W/h será: {:.2f}".format(bateria.potencia))
             print("--------------------------------------------------------------------------------------------")
         if resposta == 0:
-            lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo = etapa2(dic2)
+            lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo, lista_max_corr = etapa2(dic2)
             print("\n"*100)
             print("--------------------------------------------------------------------------------------------")
             while (len(lista_preco) > 0):
@@ -142,6 +140,7 @@ def __init__():
                 index_min = lista_preco.index(minimo)
 
                 print("Você pode usar a pilha {}".format(lista_modelo[index_min]))
+                print("A corrente máxima dessa pilha é {} A".format(lista_max_corr[index_min]))
                 print("Serão {0} pilhas em série, com {1} em paralelo em cada".format(lista_serie[index_min],lista_paralelo[index_min]))
                 print("Completando um total de {} pilhas".format(lista_quantidade[index_min]))
                 print("Cada pilha custa R${0:.2f}, totalizando R${1:.2f}".format(lista_preco_individual[index_min],lista_preco[index_min]))

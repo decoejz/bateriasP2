@@ -74,6 +74,7 @@ class Bateria_Escolhida():
         lista_quantidade = []
         lista_serie = []
         lista_paralelo = []
+        lista_max_corr = []
         for item in dic:
             quantS = serie(self.ddp, dic[item], self.limite_mais, self.limite_menos)
         
@@ -89,7 +90,8 @@ class Bateria_Escolhida():
                 lista_quantidade.append(quantT)
                 lista_serie.append(quantS)
                 lista_paralelo.append(quantP)
-        return lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo
+                lista_max_corr.append(2*dic[item]["cap_carga"])
+        return lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo, lista_max_corr
 
 def paralelo(pot_usuario,tempo_usuario,item,tensao):
     # i = pot_usuario/tensao
