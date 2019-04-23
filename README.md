@@ -1,6 +1,6 @@
 # bateriasP2
 
-Para rodar o software, é necessário clonar este repositório, e abrir ele na linha de comando de seu computador e rodar o comando a seguir:.
+Para rodar o software, é necessário clonar este repositório, e abrir ele na linha de comando de seu computador e rodar o comando a seguir:
 
 ```
 python main.py #Caso o python 3 seja o padrão de seu computador
