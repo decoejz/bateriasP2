@@ -116,12 +116,12 @@ def etapa2(dic2):
 
 
 def __init__():
-    sair = 0
+    sair = "0"
     with open('data.json', 'r') as fp:
         dic1 = json.load(fp)
     with open('comerciais.json', 'r') as cm:
         dic2 = json.load(cm)
-    while(sair == 0):
+    while(sair == "0"):
         resposta = menu_principal(dic1)
         if resposta == 1:
             bateria = etapa1(dic1)
@@ -135,16 +135,20 @@ def __init__():
             lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo, lista_max_corr = etapa2(dic2)
             print("\n"*100)
             print("--------------------------------------------------------------------------------------------")
+            counter = 4
             while (len(lista_preco) > 0):
                 minimo = min(lista_preco)
                 index_min = lista_preco.index(minimo)
 
-                print("Você pode usar a pilha {}".format(lista_modelo[index_min]))
-                print("A corrente máxima dessa pilha é {} A".format(lista_max_corr[index_min]))
-                print("Serão {0} pilhas em série, com {1} em paralelo em cada".format(lista_serie[index_min],lista_paralelo[index_min]))
-                print("Completando um total de {} pilhas".format(lista_quantidade[index_min]))
-                print("Cada pilha custa R${0:.2f}, totalizando R${1:.2f}".format(lista_preco_individual[index_min],lista_preco[index_min]))
-                print("--------------------------------------------------------------------------------------------")
+                if (counter > 0):
+                    print("Você pode usar a pilha {}".format(lista_modelo[index_min]))
+                    print("A corrente máxima dessa pilha é {} A".format(lista_max_corr[index_min]))
+                    print("Serão {0} pilhas em série, com {1} em paralelo em cada".format(lista_serie[index_min],lista_paralelo[index_min]))
+                    print("Completando um total de {} pilhas".format(lista_quantidade[index_min]))
+                    print("Cada pilha custa R${0:.2f}, totalizando R${1:.2f}".format(lista_preco_individual[index_min],lista_preco[index_min]))
+                    print("--------------------------------------------------------------------------------------------")
+                    
+                    counter -= 1
 
                 del lista_modelo[index_min]
                 del lista_preco[index_min]
@@ -157,7 +161,7 @@ def __init__():
 
 
 
-        sair = int(input("Para sair digite 1, para voltar para o início digite 0: "))
+        sair = input("Para voltar para o início digite 0, para sair digite qualquer tecla: ")
 
 
 
