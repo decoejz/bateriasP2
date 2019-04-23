@@ -28,7 +28,13 @@
         "ddp": 6,
         "cap_carga": 1.3,
         "preco": 49.90
-    }
+    },
 
+    "6":{
+        "nome": "Bateria Chumbo Acida Selada 12Ah Multilaser - SE147",
+        "ddp": 12,
+        "cap_carga": 12,
+        "preco": 60
+    }
 
 }

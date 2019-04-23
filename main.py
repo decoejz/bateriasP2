@@ -50,7 +50,7 @@ def etapa1(dic):
     conc_sol_mat2 = int(input("Qual é a concentração da solução para segundo metal em g/mol? "))
     print("\nTEMPERATURA")
     temp = int(input("Qual é a temperatura em graus celcius? "))
-    print("\n"*20)
+    print("\n"*100)
     mat1 = dic[str(mat1_id)]
     mat2 = dic[str(mat2_id)]
     bateria = pilha(mat1, mat2, massa_mat1, massa_mat2,conc_sol_mat1,conc_sol_mat2, temp)
