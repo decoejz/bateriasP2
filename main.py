@@ -69,13 +69,13 @@ def etapa2(dic2):
         except:
             ddp_usuario = input("Qual a DDP da pilha que você precisa, em V? (Coloque um número) - ")
     
-    pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? ")
+    pot_usuario = input("Qual a potência da pilha que você precisa, em W? ")
     while (True):
         try:
             pot_usuario = float(pot_usuario)
             break
         except:
-            pot_usuario = input("Qual a potência da pilha que você precisa, em W/h? (Coloque um número) - ")
+            pot_usuario = input("Qual a potência da pilha que você precisa, em W? (Coloque um número) - ")
     
     tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? ")
     while (True):
@@ -129,7 +129,7 @@ def __init__():
             print("A DDP dessa bateria em V será: {:.2f}".format(bateria.ddp))
             print("A corrente máxima da bateria, em mA será: {:.2f}".format(2*bateria.cap_carga))
             print("A Capacidade de carga dessa bateria, em mAh será: {:.2f}".format(bateria.cap_carga))
-            print("A Potência dessa bateria em W/h será: {:.2f}".format(bateria.potencia))
+            print("A Densidade de energia dessa bateria em Wh será: {:.2f}".format(bateria.potencia))
             print("--------------------------------------------------------------------------------------------")
         if resposta == 0:
             lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo, lista_max_corr = etapa2(dic2)
