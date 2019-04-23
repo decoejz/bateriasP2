@@ -34,7 +34,7 @@
         "Msol": 161.4446,
         "M": 65.38,
         "precoM": 160,
-        "precoS": 22
+        "precoS": 160
         },
 
     "4":{
@@ -49,6 +49,7 @@
         "precoM": 395,
         "precoS": 49
         },
+
     "5":{
         "nome": "Pb",
         "id": 5,
@@ -84,8 +85,8 @@
         "solucao": "MgSO4",
         "Msol": 120.3696,
         "M": 24.305,
-        "precoM": 18,
-        "precoS": 140      
+        "precoM": 140,
+        "precoS": 5     
     },
     "8":{
         "nome": "Al",

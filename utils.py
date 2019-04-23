@@ -84,7 +84,7 @@ def calcula_DDP(mat1,mat2,con_sol1,con_sol2,temp):
     F =  96485
     E0, cat, ano, con_cat, con_ano = calcula_DDP0(mat1,mat2,con_sol1, con_sol2)
     n = mat1["eletrons"]*mat2["eletrons"]
-    K = (con_ano**ano["eletrons"])/(con_cat**cat["eletrons"])
+    K = (con_ano**cat["eletrons"])/(con_cat**ano["eletrons"])
     ddp = E0 - ((R*T)/(n*F))*log(K)
     return ddp
 

@@ -53,6 +53,7 @@ def etapa1(dic):
     print("\n"*100)
     mat1 = dic[str(mat1_id)]
     mat2 = dic[str(mat2_id)]
+    print("você fará uma pilha de {0} e de {1}, com soluções de {2} e {3} à {4} e {5} mol/L, respectivamente.".format(mat1["nome"], mat2["nome"],mat1["solucao"],mat2["solucao"],conc_sol_mat1, conc_sol_mat2))
     vol1 = 0.5
     vol2 = 0.5
     bateria = pilha(mat1, mat2, massa_mat1, massa_mat2,conc_sol_mat1,conc_sol_mat2, temp, vol1, vol2)
@@ -122,7 +123,7 @@ def __init__():
             print("--------------------------------------------------------------------------------------------")
             print("É levado em consideração que cada solução tem um volume de 500 mL")
             print("A DDP dessa bateria em V será: {:.2f}".format(bateria.ddp))
-            print("A Capacidade de carga dessa bateria, em mAh será: {:.2f}".format(bateria.cap_carga))
+            print("A Capacidade de carga dessa bateria, em Ah será: {:.5f}".format(bateria.cap_carga))
             print("A Densidade de carga dessa bateria em C/g será: {:.2f}".format(bateria.den_carga))
             print("A Densidade de energia dessa bateria em Wh será: {:.2f}".format(bateria.den_ene))
             print("--------------------------------------------------------------------------------------------")
