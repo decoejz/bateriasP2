@@ -123,9 +123,10 @@ def __init__():
             print("--------------------------------------------------------------------------------------------")
             print("É levado em consideração que cada solução tem um volume de 500 mL")
             print("A DDP dessa bateria em V será: {:.2f}".format(bateria.ddp))
-            print("A Capacidade de carga dessa bateria, em Ah será: {:.5f}".format(bateria.cap_carga))
-            print("A Densidade de carga dessa bateria em C/g será: {:.2f}".format(bateria.den_carga))
-            print("A Densidade de energia dessa bateria em Wh será: {:.2f}".format(bateria.den_ene))
+            print("A Capacidade de carga dessa bateria, em mAh será: {:.2f}".format(bateria.cap_carga))
+            print("A Densidade de carga dessa bateria em C/g será: {:.5f}".format(bateria.den_carga))
+            print("A Densidade de energia dessa bateria em Wh será: {:.5f}".format(bateria.den_ene))
+            print("O preço total dessa pilha será: R${:.2f}".format(bateria.preco))
             print("--------------------------------------------------------------------------------------------")
         if resposta == 0:
             lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo = etapa2(dic2)
