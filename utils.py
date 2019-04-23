@@ -8,6 +8,19 @@ class pilha():
         self.cap_carga = calcula_cap(mat1,mat2,massa1,massa2)
         self.potencia = calcula_potencia(self,mat1,mat2)
         self.tempo_ligado = calcula_tempo(mat1,mat2)
+        self.den_carga = cal_dens_carga()
+        self.preco = calc_preco(mat1, mat2, massa1, massa2,con_sol1,con_sol2)
+
+def cal_dens_carga():
+    return 10
+
+def calc_preco(mat1, mat2, massa1, massa2, con_sol1,con_sol2):
+    #preco da solucao: por kg por 500 ml
+    #preco do metal por kg 
+    preco_metais =  (mat1["precoM"]*massa1/1000)+(mat2["precoM"]*massa2/1000)
+    preco_solucoes = (mat1["precoS"]* ((con_sol1/2)*mat1["Msol"])/1000) + (mat2["precoS"]* ((con_sol2/2)*mat2["Msol"])/1000)
+    preco_total = preco_metais + preco_solucoes
+    return preco_total
 
 def calcula_DDP0(mat1,mat2,con_sol1,con_sol2):
     maior = mat1["E"]
