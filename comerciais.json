@@ -45,14 +45,14 @@
     },
 
     "8":{
-        "nome": "Pilha Recarregavel D Ni-cd Rontek",
+        "nome": "Pilha Recarregavel D Ni-cd",
         "ddp": 1.2,
         "cap_carga": 4.5,
         "preco": 35
     },
 
     "9":{
-        "nome": "Bateria 9v 250mah Recarregável Elgin",
+        "nome": "Bateria 9v 250mah Recarregável",
         "ddp": 9,
         "cap_carga": 0.25,
         "preco": 38
