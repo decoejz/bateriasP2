@@ -84,15 +84,7 @@ def etapa2(dic2):
             break
         except:
             tempo_usuario = input("Quanto tempo a pilha precisa ficar ligada, em horas? (Coloque um número) - ")
-    
-    cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? ")
-    while (True):
-        try:
-            cap_carga_usuario = float(cap_carga_usuario)
-            break
-        except:
-            cap_carga_usuario = input("Qual a capacidade de carga da pilha que você precisa, em Ah? (Coloque um número) - ")
-    
+
     limite_usuario_mais = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para cima, em V? ")
     while (True):
         try:
@@ -109,7 +101,7 @@ def etapa2(dic2):
         except:
             limite_usuario_menos = input("Caso não seja possível conseguir a ddp exata, qual o erro que poderemos aceitar para baixo, em V? (Coloque um número) - ")
 
-    bateria_usu = Bateria_Escolhida(ddp_usuario,pot_usuario,tempo_usuario,cap_carga_usuario, limite_usuario_mais,limite_usuario_menos)
+    bateria_usu = Bateria_Escolhida(ddp_usuario,pot_usuario,tempo_usuario, limite_usuario_mais,limite_usuario_menos)
     # escolhida, total, em_paralelo, em_serie = bateria_usu.escolha(dic2)
     # return escolhida, total, em_paralelo, em_serie
     return (bateria_usu.escolha(dic2))
@@ -127,12 +119,11 @@ def __init__():
             bateria = etapa1(dic1)
             print("--------------------------------------------------------------------------------------------")
             print("A DDP dessa bateria em V será: {:.2f}".format(bateria.ddp))
-            print("A corrente máxima da bateria, em mA será: {:.2f}".format(2*bateria.cap_carga))
             print("A Capacidade de carga dessa bateria, em mAh será: {:.2f}".format(bateria.cap_carga))
             print("A Densidade de energia dessa bateria em Wh será: {:.2f}".format(bateria.potencia))
             print("--------------------------------------------------------------------------------------------")
         if resposta == 0:
-            lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo, lista_max_corr = etapa2(dic2)
+            lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo = etapa2(dic2)
             print("\n"*100)
             print("--------------------------------------------------------------------------------------------")
             counter = 4
@@ -142,7 +133,6 @@ def __init__():
 
                 if (counter > 0):
                     print("Você pode usar a pilha {}".format(lista_modelo[index_min]))
-                    print("A corrente máxima dessa pilha é {} A".format(lista_max_corr[index_min]))
                     print("Serão {0} pilhas em série, com {1} em paralelo em cada".format(lista_serie[index_min],lista_paralelo[index_min]))
                     print("Completando um total de {} pilhas".format(lista_quantidade[index_min]))
                     print("Cada pilha custa R${0:.2f}, totalizando R${1:.2f}".format(lista_preco_individual[index_min],lista_preco[index_min]))

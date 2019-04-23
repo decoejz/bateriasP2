@@ -55,11 +55,10 @@ def calcula_tempo(mat1,mat2): # não parece necessário - ela apenas pede o temp
     return 1
 
 class Bateria_Escolhida():
-    def __init__(self, ddp_usuario, pot_usuario, tempo_usuario, cap_carga_usuario, limite_mais, limite_menos):
+    def __init__(self, ddp_usuario, pot_usuario, tempo_usuario, limite_mais, limite_menos):
         self.ddp = ddp_usuario
         self.pot = pot_usuario
         self.tempo = tempo_usuario
-        self.cap_carga = cap_carga_usuario
         self.limite_mais = limite_mais
         self.limite_menos = limite_menos
     
@@ -74,7 +73,6 @@ class Bateria_Escolhida():
         lista_quantidade = []
         lista_serie = []
         lista_paralelo = []
-        lista_max_corr = []
         for item in dic:
             quantS = serie(self.ddp, dic[item], self.limite_mais, self.limite_menos)
         
@@ -90,8 +88,7 @@ class Bateria_Escolhida():
                 lista_quantidade.append(quantT)
                 lista_serie.append(quantS)
                 lista_paralelo.append(quantP)
-                lista_max_corr.append(2*dic[item]["cap_carga"])
-        return lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo, lista_max_corr
+        return lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo
 
 def paralelo(pot_usuario,tempo_usuario,item,tensao):
     # i = pot_usuario/tensao
