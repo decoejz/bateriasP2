@@ -1,4 +1,4 @@
-# bateriasP2
+# Seleção de Baterias
 
 Para rodar o software, é necessário clonar este repositório, e abrir ele na linha de comando de seu computador e rodar o comando a seguir:
 
