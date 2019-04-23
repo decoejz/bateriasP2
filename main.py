@@ -39,17 +39,17 @@ def etapa1(dic):
         print("Não esqueça que temos apenas 10 materiais disponíveis.")
         print("O id deve ser um número entre 1 e 10")
         mat1_id = int(input("Qual o id do primeiro metal? "))
-    massa_mat1 = int(input("Qual é a massa (em g) do primeiro metal? "))
-    conc_sol_mat1 = int(input("Qual é a concentração da solução para primeiro metal em mol/L? "))
+    massa_mat1 = float(input("Qual é a massa (em g) do primeiro metal? "))
+    conc_sol_mat1 = float(input("Qual é a concentração da solução para primeiro metal em mol/L? "))
     while mat2_id > 10 or mat2_id < 1:
         print("\nMETAL 2:")
         print("Não esqueça que temos apenas 10 materiais disponíveis.")
         print("O id deve ser um número entre 1 e 10")
         mat2_id = int(input("Qual o id do metal do segundo metal? "))
-    massa_mat2 = int(input("Qual é a massa (em g) do metal do segundo metal? "))
-    conc_sol_mat2 = int(input("Qual é a concentração da solução para segundo metal em mol/L? "))
+    massa_mat2 = float(input("Qual é a massa (em g) do metal do segundo metal? "))
+    conc_sol_mat2 = float(input("Qual é a concentração da solução para segundo metal em mol/L? "))
     print("\nTEMPERATURA")
-    temp = int(input("Qual é a temperatura em graus celcius? "))
+    temp = float(input("Qual é a temperatura em graus celcius? "))
     print("\n"*100)
     mat1 = dic[str(mat1_id)]
     mat2 = dic[str(mat2_id)]
@@ -120,6 +120,7 @@ def __init__():
         if resposta == 1:
             bateria = etapa1(dic1)
             print("--------------------------------------------------------------------------------------------")
+            print("É levado em consideração que cada solução tem um volume de 500 mL")
             print("A DDP dessa bateria em V será: {:.2f}".format(bateria.ddp))
             print("A Capacidade de carga dessa bateria, em mAh será: {:.2f}".format(bateria.cap_carga))
             print("A Densidade de carga dessa bateria em C/g será: {:.2f}".format(bateria.den_carga))
@@ -128,6 +129,7 @@ def __init__():
         if resposta == 0:
             lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo = etapa2(dic2)
             print("\n"*100)
+            print("As pilhas estão listadas da mais barata para a mais cara")
             print("--------------------------------------------------------------------------------------------")
             counter = 4
             while (len(lista_preco) > 0):

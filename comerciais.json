@@ -38,7 +38,7 @@
     },
 
     "7":{
-        "nome": "Bateria Recarregável Sc Nicd C/ Terminal",
+        "nome": "Bateria Recarregavel Sc Nicd C/ Terminal",
         "ddp": 1.2,
         "cap_carga": 1.8,
         "preco": 23.90
@@ -52,7 +52,7 @@
     },
 
     "9":{
-        "nome": "Bateria 9v 250mah Recarregável",
+        "nome": "Bateria 9v 250mah Recarregavel",
         "ddp": 9,
         "cap_carga": 0.25,
         "preco": 38

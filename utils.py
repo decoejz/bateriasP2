@@ -58,13 +58,20 @@ def calcula_cap(mat1,mat2,massa1,massa2):
     mol = 6.0225 * (10 ** (23))
     F = c_eletron * mol
 
-    limitante = massa1
-    material = mat1
-    contra_mat = mat2
-    if (massa2 < limitante):
+    massaP1 = mat2["eletrons"]*mat1["M"]
+    massaP2 = mat1["eletrons"]*mat2["M"]
+
+    razP = massaP1/massaP2
+    razR = massa1/massa2
+    
+    if(razP < razR):
         limitante = massa2
         material = mat2
         contra_mat = mat1
+    else:
+        limitante = massa1
+        material = mat1
+        contra_mat = mat2
 
     total_mol_e = (material["eletrons"] * limitante * contra_mat["eletrons"]) / (material["M"])
 
