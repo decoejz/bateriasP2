@@ -8,6 +8,10 @@ class pilha():
         self.cap_carga = calcula_cap(mat1,mat2,massa1,massa2)
         self.potencia = calcula_potencia(self,mat1,mat2)
         self.tempo_ligado = calcula_tempo(mat1,mat2)
+        self.den_carga = cal_dens_carga()
+
+def cal_dens_carga():
+    return 10
 
 def calcula_DDP0(mat1,mat2,con_sol1,con_sol2):
     maior = mat1["E"]

@@ -121,6 +121,7 @@ def __init__():
             print("A DDP dessa bateria em V será: {:.2f}".format(bateria.ddp))
             print("A Capacidade de carga dessa bateria, em mAh será: {:.2f}".format(bateria.cap_carga))
             print("A Densidade de energia dessa bateria em Wh será: {:.2f}".format(bateria.potencia))
+            print("A Densidade de carga dessa bateria em C/m3 será: {:.2f}".format(bateria.den_carga))
             print("--------------------------------------------------------------------------------------------")
         if resposta == 0:
             lista_modelo, lista_preco, lista_preco_individual, lista_quantidade, lista_serie, lista_paralelo = etapa2(dic2)
