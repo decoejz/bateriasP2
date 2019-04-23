@@ -1,17 +1,38 @@
 from math import *
 
 class pilha():
-    def __init__(self,mat1,mat2,massa1,massa2,con_sol1,con_sol2,temp):
+    def __init__(self,mat1,mat2,massa1,massa2,con_sol1,con_sol2,temp,vol1,vol2):
         self.mat1 = mat1
         self.mat2 = mat2
         self.ddp = calcula_DDP(mat1,mat2,con_sol1,con_sol2,temp)
         self.cap_carga = calcula_cap(mat1,mat2,massa1,massa2)
-        self.potencia = calcula_potencia(self,mat1,mat2)
         self.tempo_ligado = calcula_tempo(mat1,mat2)
-        self.den_carga = cal_dens_carga()
+        self.m_total = calc_massa_total(massa1,massa2,vol1,vol2)
+        self.den_carga = cal_dens_carga(self.cap_carga,self.m_total)
+        self.den_ene = cal_dens_ene(self.cap_carga,self.ddp)
 
-def cal_dens_carga():
-    return 10
+#Return densidade de carga [C/g]
+def cal_dens_carga(Q, m_total):
+    Dq = Q / m_total
+    return Dq
+
+#Return densidade de energia [Wh]
+def cal_dens_ene(Dq, V):
+    De = Dq * V
+    return De
+
+#Entradas:
+#massa1 [g]
+#massa2 [g]
+#vol1 [L]
+#vol2 [L]
+#Return massa total [g]
+def calc_massa_total(massa1,massa2,vol1,vol2):
+    #Tranforma os volumes em L para g baseado na densidade da agua
+    m_total = massa1 + massa2 + (vol1 * 1000) + (vol2 * 1000)
+
+    return m_total
+
 
 def calcula_DDP0(mat1,mat2,con_sol1,con_sol2):
     maior = mat1["E"]
@@ -50,10 +71,6 @@ def calcula_DDP(mat1,mat2,con_sol1,con_sol2,temp):
     K = (con_ano**ano["eletrons"])/(con_cat**cat["eletrons"])
     ddp = E0 - ((R*T)/(n*F))*log(K)
     return ddp
-
-def calcula_potencia(self,mat1,mat2):
-    pot = self.ddp * self.cap_carga
-    return pot/1000
 
 def calcula_tempo(mat1,mat2): # não parece necessário - ela apenas pede o tempo para a segunda parte
     return 1
